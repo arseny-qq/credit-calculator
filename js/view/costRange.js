@@ -1,6 +1,8 @@
 import nouislider from "../../libs/noUiSlider/nouislider";
 import wNumb from "../../libs/wNumb/wNumb";
 
+import updateModel from "./../utils/updateModel.js";
+
 const init = (getData) => {
     const $slider = document.querySelector(`#slider-cost`)
     const { cost, minPrice, maxPrice } = getData()
@@ -20,6 +22,19 @@ const init = (getData) => {
             decimals: 0,
             thousand: ` `,
             suffix: ``
+        })
+    })
+
+    $slider.noUiSlider.on(`slide`, () => {
+        let sliderValue = $slider.noUiSlider
+            .get()
+            .split(`.`)[0]
+            .replaceAll(` `, ``)
+        sliderValue = parseInt(sliderValue)
+
+        updateModel($slider, {
+            cost: sliderValue,
+            onUpdate: `costSlider`
         })
     })
 }
