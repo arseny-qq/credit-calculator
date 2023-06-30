@@ -29,7 +29,7 @@ const init = (getData) => {
         let sliderValue = $slider.noUiSlider
             .get()
             .split(`.`)[0]
-            .replaceAll(` `, ``)
+            .replace(/ /g, ``)
         sliderValue = parseInt(sliderValue)
 
         updateModel($slider, {
