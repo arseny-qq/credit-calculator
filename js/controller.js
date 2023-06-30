@@ -9,15 +9,29 @@ import costRange from "./view/costRange.js"
 
 window.addEventListener(`DOMContentLoaded`, () => {
     initPrograms(Model.getData)
-    costInput(Model.getData)
-    costRange(Model.getData)
+
+    const cleaveCost = costInput(Model.getData)
+    const $sliderCost = costRange(Model.getData)
 
     updateResultsView(Model.getResults())
 
     document.addEventListener(`updateForm`, (evt) => {
         Model.setData(evt.detail)
 
+        const data = Model.getData()
         const results = Model.getResults()
+
+        updateFormAndSliders(data)
         updateResultsView(results)
     })
+
+    const updateFormAndSliders = ({ onUpdate, cost }) => {
+        if (onUpdate !== `inputCost`) {
+            cleaveCost.setRawValue(cost)
+        }
+
+        if (onUpdate !== `costSlider`) {
+            $sliderCost.noUiSlider.set(cost)
+        }
+    }
 })

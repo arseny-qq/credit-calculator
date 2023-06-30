@@ -37,6 +37,8 @@ const init = (getData) => {
             onUpdate: `costSlider`
         })
     })
+
+    return $slider
 }
 
 
