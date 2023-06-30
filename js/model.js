@@ -20,6 +20,15 @@ const getData = () => {
 }
 
 const setData = (newData) => {
+    if (newData.onUpdate === `inputCost`) {
+        if (newData.cost < data.minPrice) {
+            newData.cost = data.minPrice
+        }
+        else if (newData.cost > data.maxPrice) {
+            newData.cost = data.maxPrice
+        }
+    }
+
     data = {...data, ...newData}
 
     results = {

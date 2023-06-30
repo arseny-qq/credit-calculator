@@ -1,3 +1,6 @@
+import updateModel from "./../utils/updateModel.js";
+
+
 const init = (getData) => {
     const $input = document.querySelector(`#input-cost`)
     const { cost, minPrice, maxPrice } = getData()
@@ -21,6 +24,11 @@ const init = (getData) => {
         else {
             $wrapper.classList.remove(`param__details--error`)
         }
+
+        updateModel($input, {
+            cost: value,
+            onUpdate: `inputCost`
+        })
     })
 
     $input.addEventListener(`change`, () => {
@@ -35,6 +43,11 @@ const init = (getData) => {
         }
 
         $wrapper.classList.remove(`param__details--error`)
+
+        updateModel($input, {
+            cost: +cleaveInput.getRawValue(),
+            onUpdate: `inputCost`
+        })
     })
 }
 
