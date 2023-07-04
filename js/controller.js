@@ -2,6 +2,7 @@ import * as Model from "./model.js"
 
 import initPrograms from "./view/radioPrograms.js"
 import updateResultsView from "./view/updateResultsView.js"
+import { updateMinPercents}  from "./view/utils.js"
 
 import costInput from "./view/costInput.js"
 import costRange from "./view/costRange.js"
@@ -21,6 +22,7 @@ window.addEventListener(`DOMContentLoaded`, () => {
         const data = Model.getData()
         const results = Model.getResults()
 
+        updateMinPercents(data)
         updateFormAndSliders(data)
         updateResultsView(results)
     })
